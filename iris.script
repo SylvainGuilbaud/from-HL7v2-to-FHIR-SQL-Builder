@@ -1,0 +1,37 @@
+    #; set r=##class(%Net.HttpRequest).%New(),r.Server="pm.community.intersystems.com",r.SSLConfiguration="ISC.FeatureTracker.SSL.Config" d r.Get("/packages/zpm/latest/installer"),$system.OBJ.LoadStream(r.HttpResponse.Data,"c")
+    zpm "install webterminal"
+    zpm "install classexplorer" 
+    zpm "install fhir-portal"
+
+    zn "IRISAPP"
+    zpm "install csvgen"
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/heart-disease.csv",",","dc.data.health.HeartDisease") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/breast-cancer.csv",",","dc.data.health.BreastCancer") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/diabetes.csv",",","dc.data.health.Diabetes")  
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/kidney_disease.csv",",","dc.data.health.KidneyDisease") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/maternal_health_risk.csv",",","dc.data.health.MaternalHealthRisk") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/hospital_mortality.csv",",","dc.data.health.HospitalMortality") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/life_expectancy.csv",",","dc.data.health.LifeExpectancy") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/pollution-deaths-from-fossil-fuels.csv",",","dc.data.health.PollutionDeaths") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/dementia.csv",",","dc.data.health.Dementia") 
+    Do ##class(community.csvgen).Generate("/home/irisowner/dev/data/ML/hepatitis.csv",",","dc.data.health.Hepatitis") 
+    
+    zn "%SYS"
+    Do ##class(Security.Users).UnExpireUserPasswords("*")
+
+    set props2("NameSpace") = "FHIRSERVER"
+    set props2("DispatchClass") = "FHIRDemo.REST.Dispatch"
+    set props2("CookiePath") = "/csp/demo/rest/"
+    set props2("Description") = "Demo REST API"
+    set props2("MatchRoles") = ":%All"
+    set props2("AutheEnabled") = 64
+    set tSC = ##class(Security.Applications).Create("/csp/demo/rest", .props2)
+    zw tSCs
+   
+    #; do $system.OBJ.ImportDir("/home/irisowner/dev","*.cls","cdk",.errors,1)
+
+    #; zw $classmethod("Ens.Director", "SetAutoStart", "FHIRHL7V2DEMOPKG.FoundationProduction", 0)
+
+    zpm "load /home/irisowner/dev/ -v"
+
+    halt
