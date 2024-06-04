@@ -83,6 +83,6 @@ From here you can see all the FHIR ressources in an SQL relational way.
 ## Special Thanks
 
 * https://github.com/limelissa for the UI
-* https://github.com/grongierisc/FHIR-HL7v2-SQL-Demo
+* https://github.com/grongierisc/FHIR-HL7v2-SQL-Demo for the initial project
 
 
