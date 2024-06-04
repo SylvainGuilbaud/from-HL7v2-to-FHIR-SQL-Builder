@@ -1,0 +1,99 @@
+/* Links */
+.links-div {
+    position: absolute;
+    top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    box-sizing: border-box;
+    width:100%;
+}
+
+.nav {
+    background-color: #abcdcf;
+    text-align: center;
+    height: 60px;
+}
+
+.nav > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: "Gill Sans", sans-serif;
+    /* font-size: x-large; */
+    font-size: 1.5vw;
+    width: 100px;
+}
+
+.nav > a:hover {
+    background-color: white;
+    color:#abcdcf;
+    text-align: center;
+    border: solid #abcdcf;
+}
+
+/* Background Image */
+.main {
+    width: 100%;
+    height: 700px;
+	/* height: 100%; */
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+    margin: auto;
+    margin-top: 80px;
+}
+
+#fhir_img {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+/* Footer links */
+.Button {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #657a7a;
+	background-color: #FFFFFF;
+	width: 200px;
+	border-radius: 10px;
+	margin: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.Button:hover {
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.links {
+	text-align: center; 
+	margin-top: 30px;
+	background-color: #abcdcf;
+}
+
+/* Modal form */
+#summit {
+	background-color: #abcdcf;
+	border-color: #abcdcf;
+	margin-left: 45%;
+}
+
+#messageViewer {
+	background-color: #abcdcf;
+	border-color: #abcdcf;
+}
+
+#HL7v2filePreview {
+	font-family: 'Courier New', Courier, monospace;
+	margin-top: 10px;
+}
+

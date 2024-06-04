@@ -1,0 +1,53 @@
+{
+    "objectscript.conn": {
+        "ns": "FHIRSERVER",
+        "username": "_SYSTEM",
+        "password": "SYS",
+        "active": true,
+        "links": {
+            "class explorer": "http://${host}:${port}/classexplorer/",
+            "FHIR UI Portal": "http://localhost:${port}/fhir/portal/patientlist.html",
+            "FHIR UI Demo": "http://localhost:${port}/fhirUI/FHIRAppDemo.html",
+            "FHIR server test": "http://localhost:${port}/fhir/r4/metadata",
+            "FHIR-HL7v2": "http://localhost:4201/",
+            "FHIR SQL Builder": "http://localhost:${port}/csp/fhirsql/index.html",
+            "SQL": "http://localhost:52776/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=FHIRSERVER&$NAMESPACE=FHIRSERVER",
+            "swagger-ui": "http://localhost:52773/swagger-ui/index.html",
+            "API FHIR Patients": "http://localhost:${port}/fhir/r4/Patient",
+            "Terminal": "http://localhost:${port}/terminal/"
+        },
+        "docker-compose": {
+            "internalPort": 52773,
+            "service": "iris"
+        }
+    },
+    "sqltools.connections": [
+        {
+            "namespace": "FHIRSERVER",
+            "connectionMethod": "Server and Port",
+            "showSystem": false,
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 52776,
+            "https": false,
+            "askForPassword": false,
+            "driver": "InterSystems IRIS",
+            "name": "FHIRSERVER",
+            "username": "_SYSTEM",
+            "password": "SYS"
+        },
+        {
+            "namespace": "FHIRSERVER",
+            "connectionMethod": "Server and Port",
+            "showSystem": false,
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 52776,
+            "https": false,
+            "askForPassword": true,
+            "driver": "InterSystems IRIS",
+            "name": "IPC",
+            "username": "_SYSTEM"
+        }
+    ]
+}
