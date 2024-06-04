@@ -1,10 +1,4 @@
-
--- AB.Location definition
-
--- Drop table
-
-select * from aaipc.Patient
-
+select * from aa.Patient
 
 DROP TABLE AAAA.Location;
 
