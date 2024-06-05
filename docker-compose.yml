@@ -12,19 +12,6 @@ services:
     volumes:
     - ./data:/data
     - ./notebook/Notebooks:/Notebooks
-    # - ./keys:/keys
-    # - type: bind
-    #   source: ./misc
-    #   target: /home/irisowner/irislicense
-    # - type: bind
-    #   source: ./sampleFiles
-    #   target: /home/irisowner/src/sampleFiles
-    - type: bind
-      source: ./in
-      target: /home/irisowner/in
-    - type: bind
-      source: ./out
-      target: /home/irisowner/out
     command: 
       # --key /keys/iris.key
       --check-caps false
