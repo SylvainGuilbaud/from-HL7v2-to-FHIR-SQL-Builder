@@ -13,7 +13,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="TargetConfigNames">HL7toSDAProcess</Setting>
     <Setting Target="Adapter" Name="FilePath">/home/irisowner/in/</Setting>
     <Setting Target="Adapter" Name="ArchivePath">/home/irisowner/out/</Setting>
-    <Setting Target="Adapter" Name="FileSpec">*.txt</Setting>
+    <Setting Target="Adapter" Name="FileSpec">*.hl7</Setting>
     <Setting Target="Adapter" Name="WorkPath">/usr/irissys/mgr/Temp/</Setting>
   </Item>
   <Item Name="WS_REST" Category="Demo" ClassName="FHIRDemo.Service.POSTService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
