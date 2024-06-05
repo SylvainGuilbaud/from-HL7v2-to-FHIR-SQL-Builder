@@ -9,7 +9,12 @@
       <Packaging>module</Packaging>
     <SourcesRoot>src</SourcesRoot>
     <Invokes>
-    <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" ></Invoke>
+    <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" >
+    <Arg>FHIRSERVER</Arg>
+    </Invoke>
+    <Invoke Class="fhirtemplate.Setup" Method="SetupFHIRServer" Phase="Activate" When="After" >
+    <Arg>CLINIC</Arg>
+    </Invoke>
     </Invokes>
     <Resource Name="fhirtemplate.PKG"/>
     <Resource Name="User.PKG"/>

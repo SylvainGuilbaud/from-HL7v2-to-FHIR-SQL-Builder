@@ -3,11 +3,9 @@ Class fhirtemplate.Setup
 
 ClassMethod SetupFHIRServer(ns) As %Status
 {
-    set ns=$g(ns,$namespace)
-    set ns="FHIRSERVER"
     zn "HSLIB"
     set namespace=ns
-    Set appKey = "/fhir/r4"
+    Set appKey = "/" _ $zcvt(ns,"L") _ "/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
     set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
     Set metadataConfigKey = "HL7v40"
@@ -57,7 +55,7 @@ ClassMethod LoadPatientData(path, namespace, appKey) As %Status
     quit ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(path, namespace, appKey)
 }
 
-ClassMethod AddApp(ns={$namespace}) As %Status
+ClassMethod AddApp(ns = {$namespace}) As %Status
 {
     set namespace=ns
     zn "%SYS"

@@ -3,8 +3,7 @@ services:
   iris:
     build:
       context: .
-    image: fhirhl7v2demo:iris
-    hostname: fhirhl7v2demo
+    hostname: from-hl7v2-to-fhir
     ports:
 #    - "51773" # 51773 is the superserver default port
     - "1972" # 1972 is the new superserver default port
@@ -17,7 +16,6 @@ services:
       --check-caps false
   fhirhl7v2ui:
     build: ./fhirhl7ui
-    image: fhirhl7v2demo:ui
     depends_on:
       - iris
     ports:
