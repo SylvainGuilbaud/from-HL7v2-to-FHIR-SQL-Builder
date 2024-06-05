@@ -1,4 +1,4 @@
-# FHIR-HL7v2-SQL-Demo
+# from HL7v2 to FHIR SQL Builder
 
 Ready to use demo of an FHIR Server with :
 * HL7v2 transformation to the FHIR Server 
