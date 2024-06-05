@@ -5,7 +5,8 @@ ClassMethod SetupFHIRServer(ns) As %Status
 {
     zn "HSLIB"
     set namespace=ns
-    Set appKey = "/" _ $zcvt(ns,"L") _ "/r4"
+    #; Set appKey = "/" _ $zcvt(ns,"L") _ "/r4"
+    Set appKey = "/fhir/r4"
     Set strategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
     set metadataPackages = $lb("hl7.fhir.r4.core@4.0.1")
     Set metadataConfigKey = "HL7v40"
