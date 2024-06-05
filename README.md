@@ -34,6 +34,12 @@ docker-compose up --build -d
 
 3 steps to use it :
 
+## Import FHIR resources from VSCode using FHIR.API.http
+
+1. edit the file FHIR.API.http
+2. click on "Send Request" under ### labels 
+
+
 ## Import FHIR resources using POSTMAN
 
 1. import into [Postman](https://www.postman.com/) the file ./misc/from HL7v2 to FHIR SQL Builder.postman_collection.json 

@@ -1,12 +1,10 @@
-
-```http
 ### get all patients
 GET http://_system:SYS@localhost:52776/fhir/r4/Patient HTTP/1.1
 content-type: application/fhir+json
 Accept: */*
 
 ### get one patient
-GET http://_system:SYS@localhost:52776/fhir/r4/Patient/2681 HTTP/1.1
+GET http://_system:SYS@localhost:52776/fhir/r4/Patient/4 HTTP/1.1
 content-type: application/fhir+json
 Accept: */*
 
@@ -174,6 +172,3 @@ Accept: */*
 DELETE http://_system:SYS@localhost:52776/fhir/r4/Patient/2681 HTTP/1.1
 content-type: application/fhir+json
 Accept: */*
-```
-
-
