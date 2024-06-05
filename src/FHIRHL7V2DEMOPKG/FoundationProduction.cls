@@ -11,10 +11,10 @@ XData ProductionDefinition
   <Item Name="From_ADT" Category="Demo" ClassName="EnsLib.HL7.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="MessageSchemaCategory">2.3.1</Setting>
     <Setting Target="Host" Name="TargetConfigNames">HL7toSDAProcess</Setting>
-    <Setting Target="Adapter" Name="FilePath">/home/irisowner/in/</Setting>
-    <Setting Target="Adapter" Name="ArchivePath">/home/irisowner/out/</Setting>
+    <Setting Target="Adapter" Name="FilePath">/data/in/</Setting>
+    <Setting Target="Adapter" Name="ArchivePath">/data/archive</Setting>
     <Setting Target="Adapter" Name="FileSpec">*.hl7</Setting>
-    <Setting Target="Adapter" Name="WorkPath">/usr/irissys/mgr/Temp/</Setting>
+    <Setting Target="Adapter" Name="WorkPath">/data/work</Setting>
   </Item>
   <Item Name="WS_REST" Category="Demo" ClassName="FHIRDemo.Service.POSTService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="MessageSchemaCategory">2.3.1</Setting>
