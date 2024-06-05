@@ -26,7 +26,7 @@ docker-compose up --build -d
 
 * Use UX at http://localhost:4201
 
-* ***Login/Password*** : SuperUser/password
+* ***Login/Password*** : _SYSTEM/SYS
 
 ### How-To use the demo
 

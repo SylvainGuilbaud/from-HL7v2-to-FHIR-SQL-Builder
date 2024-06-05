@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "d116b550-27b5-4a6b-b691-b1ffbaaaaaae",
+		"name": "from HL7v2 to FHIR SQL Builder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3919834"
+	},
+	"item": [
+		{
+			"name": "/r4/metadata",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/metadata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resourceType\": \"Organization\",\n    \"extension\": [\n        {\n            \"url\": \"http://synthetichealth.github.io/synthea/utilization-encounters-extension\",\n            \"valueInteger\": 4\n        },\n        {\n            \"url\": \"http://synthetichealth.github.io/synthea/utilization-procedures-extension\",\n            \"valueInteger\": 0\n        },\n        {\n            \"url\": \"http://synthetichealth.github.io/synthea/utilization-labs-extension\",\n            \"valueInteger\": 0\n        },\n        {\n            \"url\": \"http://synthetichealth.github.io/synthea/utilization-prescriptions-extension\",\n            \"valueInteger\": 0\n        }\n    ],\n    \"identifier\": [\n        {\n            \"system\": \"https://github.com/synthetichealth/synthea\",\n            \"value\": \"8b58cdd1-3d79-3126-8fe0-da2c54d6805c\"\n        }\n    ],\n    \"active\": true,\n    \"type\": [\n        {\n            \"coding\": [\n                {\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/organization-type\",\n                    \"code\": \"prov\",\n                    \"display\": \"Healthcare Provider\"\n                }\n            ],\n            \"text\": \"Healthcare Provider\"\n        }\n    ],\n    \"name\": \"AAAAAA HOSPITAL\",\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"6175062000\"\n        }\n    ],\n    \"address\": [\n        {\n            \"line\": [\n                \"2100 DORCHESTER AVENUE\"\n            ],\n            \"city\": \"BOSTON\",\n            \"state\": \"MA\",\n            \"postalCode\": \"02124\",\n            \"country\": \"US\"\n        }\n    ],\n    \"meta\": {\n        \"lastUpdated\": \"2024-02-09T17:21:26Z\",\n        \"versionId\": \"1\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/Patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"Patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patient",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json;"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/Patient/2652",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"Patient",
+						"2652"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bundle DL",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json;"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"resourceType\": \"Bundle\",\n  \"type\": \"transaction\",\n  \"entry\": [\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a0c99c-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"identifier\": [{ \"value\": \"EMERGENCY\" }]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Patient\" },\n      \"fullUrl\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"address\": [\n          {\n            \"city\": \"Eton\",\n            \"line\": [\"44 Pond Drive\"],\n            \"postalCode\": \"SL4 6BB\",\n            \"state\": \"Berks\"\n          }\n        ],\n        \"birthDate\": \"1968-12-20\",\n        \"gender\": \"female\",\n        \"identifier\": [\n    {\n      \"use\": \"official\",\n      \"type\": {\n        \"coding\": [\n          {\n            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n            \"code\": \"DL\",\n            \"display\": \"Driver's License\"\n          }\n        ]\n      },\n      \"system\": \"urn:oid:2.16.840.1.113883.4.3.25\",\n      \"value\": \"187788223334\"\n    }\n  ],\n        \"managingOrganization\": {\n          \"reference\": \"urn:uuid:a8a0c99c-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"name\": [\n          {\n            \"family\": \"Chung\",\n            \"given\": [\"Martine\"],\n            \"text\": \"Alice Chung\",\n            \"use\": \"official\"\n          }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a30181-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"identifier\": [{ \"value\": \"SS\" }]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"RelatedPerson\" },\n      \"fullUrl\": \"urn:uuid:a8a3a852-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"RelatedPerson\",\n        \"address\": [\n          {\n            \"city\": \"Hastings\",\n            \"country\": \"UK\",\n            \"line\": [\"The Surgery; 30 Mt Pleasant Rd\"],\n            \"period\": {\n              \"end\": \"2007-09-01T00:00:00+00:00\",\n              \"start\": \"1953-01-01T00:00:00+00:00\"\n            },\n            \"postalCode\": \"HA1111\",\n            \"state\": \"Sussex\"\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/guarantor-guarantor-number\",\n            \"valueIdentifier\": {\n              \"assigner\": {\n                \"reference\": \"urn:uuid:a8a30181-21b9-11ef-9188-0242ac1a0002\"\n              },\n              \"type\": {\n                \"coding\": [\n                  {\n                    \"code\": \"SB\",\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\"\n                  }\n                ],\n                \"text\": \"SSN\"\n              },\n              \"value\": \"333-33-3333\"\n            }\n          }\n        ],\n        \"identifier\": [\n          {\n            \"type\": { \"text\": \"SSN\" },\n            \"use\": \"official\",\n            \"value\": \"444-44-4444\"\n          }\n        ],\n        \"name\": [\n          {\n            \"family\": \"Pybus\",\n            \"given\": [\"John\", \"Steven\"],\n            \"prefix\": [\"Mr\"],\n            \"suffix\": [\"PhD\", \"MRCVS\"],\n            \"text\": \"Mr John Steven Pybus PhD MRCVS\"\n          }\n        ],\n        \"patient\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"period\": {\n          \"end\": \"2099-12-31T00:00:00+00:00\",\n          \"start\": \"1950-11-28T00:00:00+00:00\"\n        },\n        \"relationship\": [{ \"coding\": [{ \"code\": \"Family\" }] }],\n        \"telecom\": [\n          { \"system\": \"phone\", \"use\": \"home\", \"value\": \"+44-1823-420648\" },\n          { \"system\": \"phone\", \"use\": \"work\", \"value\": \"+44-1823-420648\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a46937-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"address\": [\n          {\n            \"city\": \"Pattaya\",\n            \"country\": \"Thai\",\n            \"line\": [\"The Club House; Soi 3\"],\n            \"period\": {\n              \"end\": \"2010-12-31T00:00:00+00:00\",\n              \"start\": \"2000-01-01T00:00:00+00:00\"\n            },\n            \"postalCode\": \"12345\",\n            \"state\": \"Bang\"\n          }\n        ],\n        \"contact\": [\n          {\n            \"name\": {\n              \"family\": \"Green\",\n              \"given\": [\"George\", \"Light\"],\n              \"prefix\": [\"der\"],\n              \"suffix\": [\"III\", \"Dr\"],\n              \"text\": \"der George Light Green III Dr\"\n            }\n          }\n        ],\n        \"identifier\": [{ \"value\": \"PSCC\" }],\n        \"name\": \"Pattaya Sports and Social Club\",\n        \"telecom\": [\n          { \"system\": \"phone\", \"use\": \"work\", \"value\": \"038-221-3213\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Coverage\" },\n      \"fullUrl\": \"urn:uuid:a8a49756-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Coverage\",\n        \"beneficiary\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-group-name\",\n            \"valueString\": \"Expat2\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-group-number\",\n            \"valueString\": \"E112233\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-insured-address\",\n            \"valueAddress\": {\n              \"city\": \"Phattaya\",\n              \"country\": \"TG\",\n              \"line\": [\"Pybus House; 144/89 Soi 6\"],\n              \"period\": {\n                \"end\": \"2010-10-10T00:00:00+00:00\",\n                \"start\": \"2001-01-01T00:00:00+00:00\"\n              },\n              \"postalCode\": \"88221\",\n              \"state\": \"Chinbiru\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-insured-name\",\n            \"valueHumanName\": {\n              \"family\": \"Pybus\",\n              \"given\": [\"Philip\", \"John\"],\n              \"prefix\": [\"Sir\"],\n              \"suffix\": [\"sr\", \"SE\"],\n              \"text\": \"Sir Philip John Pybus sr SE\"\n            }\n          }\n        ],\n        \"network\": \"PSCC\",\n        \"payor\": [\n          { \"reference\": \"urn:uuid:a8a46937-21b9-11ef-9188-0242ac1a0002\" }\n        ],\n        \"period\": {\n          \"end\": \"2019-12-31T00:00:00+00:00\",\n          \"start\": \"2005-06-06T00:00:00+00:00\"\n        },\n        \"relationship\": { \"coding\": [{ \"code\": \"S\", \"display\": \"Self\" }] },\n        \"status\": \"active\",\n        \"subscriberId\": \"P00000022\",\n        \"type\": {\n          \"coding\": [{ \"code\": \"PB2\", \"display\": \"PattayaSSC2\" }],\n          \"text\": \"OP\"\n        }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a49f61-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"identifier\": [{ \"value\": \"NoCo\" }]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Coverage\" },\n      \"fullUrl\": \"urn:uuid:a8a4a9aa-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Coverage\",\n        \"beneficiary\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"network\": \"NoCo\",\n        \"payor\": [\n          { \"reference\": \"urn:uuid:a8a49f61-21b9-11ef-9188-0242ac1a0002\" }\n        ],\n        \"status\": \"active\",\n        \"type\": { \"coding\": [{ \"code\": \"NoCo\" }] }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a4c266-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"address\": [\n          {\n            \"city\": \"Jomtien\",\n            \"country\": \"Thail\",\n            \"line\": [\"0 No Street; (beach)\"],\n            \"period\": {\n              \"end\": \"2010-11-11T00:00:00+00:00\",\n              \"start\": \"2000-01-01T00:00:00+00:00\"\n            },\n            \"postalCode\": \"66666\",\n            \"state\": \"nr Pattaya\"\n          }\n        ],\n        \"contact\": [\n          {\n            \"name\": {\n              \"family\": \"Drifter\",\n              \"given\": [\"A\", \"G\"],\n              \"prefix\": [\"the\"],\n              \"suffix\": [\"IV\", \"MSc\"],\n              \"text\": \"the A G Drifter IV MSc\"\n            }\n          }\n        ],\n        \"identifier\": [{ \"value\": \"NOP\" }],\n        \"name\": \"NoPlans Insurance Co\",\n        \"telecom\": [\n          { \"system\": \"phone\", \"use\": \"mobile\", \"value\": \"081-000-0000\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Coverage\" },\n      \"fullUrl\": \"urn:uuid:a8a4e27e-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Coverage\",\n        \"beneficiary\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-group-name\",\n            \"valueString\": \"NoGroup\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-group-number\",\n            \"valueString\": \"000\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-insured-address\",\n            \"valueAddress\": {\n              \"city\": \"St Leonards\",\n              \"country\": \"Britian\",\n              \"line\": [\"Surgery; 30 Mt Pleasant Rd\"],\n              \"period\": {\n                \"end\": \"2007-09-21T00:00:00+00:00\",\n                \"start\": \"1953-02-01T00:00:00+00:00\"\n              },\n              \"postalCode\": \"442213\",\n              \"state\": \"WSussex\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/health-fund-insured-name\",\n            \"valueHumanName\": {\n              \"family\": \"Pybus\",\n              \"given\": [\"John\", \"Stephen\"],\n              \"prefix\": [\"Sir\"],\n              \"suffix\": [\"III\", \"Dr\"],\n              \"text\": \"Sir John Stephen Pybus III Dr\"\n            }\n          }\n        ],\n        \"network\": \"NOP\",\n        \"payor\": [\n          { \"reference\": \"urn:uuid:a8a4c266-21b9-11ef-9188-0242ac1a0002\" }\n        ],\n        \"period\": {\n          \"end\": \"2100-12-31T00:00:00+00:00\",\n          \"start\": \"1900-01-01T00:00:00+00:00\"\n        },\n        \"relationship\": { \"coding\": [{ \"code\": \"F\", \"display\": \"Father\" }] },\n        \"status\": \"active\",\n        \"subscriberId\": \"N66611124AGGT1\",\n        \"type\": { \"text\": \"None\" }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a4e834-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"name\": \"Private Patients Plan\"\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Coverage\" },\n      \"fullUrl\": \"urn:uuid:a8a4fc54-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Coverage\",\n        \"beneficiary\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"payor\": [\n          { \"reference\": \"urn:uuid:a8a4e834-21b9-11ef-9188-0242ac1a0002\" }\n        ],\n        \"period\": { \"end\": \"2009-12-31T00:00:00+00:00\" },\n        \"relationship\": {\n          \"coding\": [\n            {\n              \"code\": \"E\",\n              \"display\": \"Employee\",\n              \"extension\": [\n                {\n                  \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-translated-s-d-a-coding-standard\",\n                  \"valueString\": \"Bin\"\n                }\n              ]\n            }\n          ]\n        },\n        \"status\": \"active\",\n        \"subscriberId\": \"98761235\",\n        \"type\": {\n          \"coding\": [\n            {\n              \"code\": \"EPG\",\n              \"extension\": [\n                {\n                  \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-translated-s-d-a-coding-standard\",\n                  \"valueString\": \"BIN\"\n                }\n              ]\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Practitioner\" },\n      \"fullUrl\": \"urn:uuid:a8a50e0a-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Practitioner\",\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-detail-care-provider-description\",\n            \"valueString\": \"Mashepa, Zehar\"\n          }\n        ],\n        \"identifier\": [{ \"value\": \"OO19\" }],\n        \"name\": [\n          { \"family\": \"Mashepa\", \"given\": [\"Zehar\"], \"text\": \"Zehar Mashepa\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Encounter\" },\n      \"fullUrl\": \"urn:uuid:a8a54974-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Encounter\",\n        \"class\": {\n          \"code\": \"IMP\",\n          \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"\n        },\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-encounter-type\",\n            \"valueString\": \"I\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-entered-at\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a0c99c-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-entered-on\",\n            \"valueDateTime\": \"2008-09-15T17:00:00+00:00\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-guarantors\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a3a852-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-health-funds\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a49756-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-health-funds\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a4a9aa-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-health-funds\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a4e27e-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-health-funds\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a4fc54-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-to-time\",\n            \"valueDateTime\": \"2008-09-22T20:05:00+00:00\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/encounter-visit-description\",\n            \"valueString\": \"Monitor heart\"\n          }\n        ],\n        \"hospitalization\": { \"admitSource\": { \"coding\": [{ \"code\": \"EO\" }] } },\n        \"identifier\": [\n          {\n            \"system\": \"http://www.intersystems.com/fhir/extn/sda3/lib/undefinedAA\",\n            \"type\": { \"text\": \"EncounterNumber\" },\n            \"use\": \"official\",\n            \"value\": \"HSVN04567\"\n          }\n        ],\n        \"participant\": [\n          {\n            \"individual\": {\n              \"reference\": \"urn:uuid:a8a50e0a-21b9-11ef-9188-0242ac1a0002\"\n            },\n            \"type\": [\n              {\n                \"coding\": [\n                  {\n                    \"code\": \"ATND\",\n                    \"display\": \"attender\",\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"\n                  }\n                ]\n              }\n            ]\n          }\n        ],\n        \"period\": { \"start\": \"2008-09-15T17:00:00+00:00\" },\n        \"reasonCode\": [\n          {\n            \"coding\": [\n              {\n                \"code\": \"Obs\",\n                \"display\": \"Observation\",\n                \"extension\": [\n                  {\n                    \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-translated-s-d-a-coding-standard\",\n                    \"valueString\": \"BOB\"\n                  }\n                ]\n              }\n            ]\n          }\n        ],\n        \"status\": \"unknown\",\n        \"subject\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"AllergyIntolerance\" },\n      \"fullUrl\": \"urn:uuid:a8a69eef-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"AllergyIntolerance\",\n        \"clinicalStatus\": {\n          \"coding\": [\n            {\n              \"code\": \"active\",\n              \"system\": \"http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical\"\n            }\n          ]\n        },\n        \"code\": { \"coding\": [{ \"code\": \"N\", \"display\": \"Nuts\" }] },\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/allergy-allergy-category\",\n            \"valueCodeableConcept\": {\n              \"coding\": [{ \"code\": \"O\", \"display\": \"Oral\" }]\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/allergy-discovery-time\",\n            \"valueDateTime\": \"2007-08-07T00:00:00+00:00\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/allergy-entered-at\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a0c99c-21b9-11ef-9188-0242ac1a0002\"\n            }\n          }\n        ],\n        \"onsetDateTime\": \"2007-08-07T00:00:00+00:00\",\n        \"patient\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"reaction\": [\n          {\n            \"manifestation\": [{ \"coding\": [{ \"code\": \"Rash\" }] }],\n            \"severity\": \"severe\"\n          }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Medication\" },\n      \"fullUrl\": \"urn:uuid:a8a84796-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": { \"resourceType\": \"Medication\" }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Medication\" },\n      \"fullUrl\": \"urn:uuid:a8a97cc5-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Medication\",\n        \"code\": { \"coding\": [{ \"code\": \"Act\", \"display\": \"Actrapid\" }] }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a99608-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"address\": [\n          {\n            \"city\": \"Bangkok\",\n            \"country\": \"Thailand\",\n            \"line\": [\"Bank Nursing Home; 1 Sukhumvit\"],\n            \"postalCode\": \"11111\",\n            \"state\": \"BKK\"\n          }\n        ],\n        \"identifier\": [\n          {\n            \"extension\": [\n              {\n                \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-detail-organization-s-d-a-coding-standard\",\n                \"valueString\": \"BDP\"\n              }\n            ],\n            \"value\": \"BNH\"\n          }\n        ],\n        \"name\": \"BNH\",\n        \"telecom\": [\n          { \"system\": \"phone\", \"use\": \"work\", \"value\": \"02-212-2211\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Organization\" },\n      \"fullUrl\": \"urn:uuid:a8a9b953-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Organization\",\n        \"active\": true,\n        \"identifier\": [{ \"value\": \"N101\" }],\n        \"name\": \"N101\",\n        \"partOf\": {\n          \"reference\": \"urn:uuid:a8a0c99c-21b9-11ef-9188-0242ac1a0002\"\n        }\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Practitioner\" },\n      \"fullUrl\": \"urn:uuid:a8a9cbe2-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Practitioner\",\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-detail-care-provider-description\",\n            \"valueString\": \"Needle, Sharp\"\n          }\n        ],\n        \"identifier\": [{ \"value\": \"Inj01\" }],\n        \"name\": [\n          { \"family\": \"Needle\", \"given\": [\"Sharp\"], \"text\": \"Sharp Needle\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"Practitioner\" },\n      \"fullUrl\": \"urn:uuid:a8a9e06a-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"Practitioner\",\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-detail-care-provider-description\",\n            \"valueString\": \"Bin, Bryanna\"\n          }\n        ],\n        \"identifier\": [\n          {\n            \"extension\": [\n              {\n                \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-detail-care-provider-s-d-a-coding-standard\",\n                \"valueString\": \"BHR\"\n              }\n            ],\n            \"value\": \"BB\"\n          }\n        ],\n        \"name\": [\n          { \"family\": \"Bin\", \"given\": [\"Bryanna\"], \"text\": \"Bryanna Bin\" }\n        ]\n      }\n    },\n    {\n      \"request\": { \"method\": \"POST\", \"url\": \"MedicationStatement\" },\n      \"fullUrl\": \"urn:uuid:a8aa2207-21b9-11ef-9188-0242ac1a0002\",\n      \"resource\": {\n        \"resourceType\": \"MedicationStatement\",\n        \"context\": {\n          \"reference\": \"urn:uuid:a8a54974-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"dosage\": [\n          {\n            \"asNeededBoolean\": false,\n            \"doseAndRate\": [\n              {\n                \"doseQuantity\": {\n                  \"code\": \"IU\",\n                  \"system\": \"http://www.intersystems.com/fhir/system\",\n                  \"unit\": \"Int Units\",\n                  \"value\": 100\n                },\n                \"rateQuantity\": {\n                  \"code\": \"ml\",\n                  \"extension\": [\n                    {\n                      \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-rate-time-unit\",\n                      \"valueString\": \"hr\"\n                    }\n                  ],\n                  \"system\": \"http://www.intersystems.com/fhir/system\",\n                  \"unit\": \"mls\",\n                  \"value\": 200\n                }\n              }\n            ]\n          }\n        ],\n        \"extension\": [\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-callback-number\",\n            \"valueString\": \"x1221, Mobile: 081-234-3214\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-confidentiality-code\",\n            \"valueCodeableConcept\": {\n              \"coding\": [\n                {\n                  \"code\": \"P\",\n                  \"display\": \"Politician\",\n                  \"extension\": [\n                    {\n                      \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-translated-s-d-a-coding-standard\",\n                      \"valueString\": \"GCS\"\n                    }\n                  ]\n                }\n              ]\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-drug-product\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a97cc5-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-entered-at\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a99608-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-entered-by\",\n            \"valueCodeableConcept\": {\n              \"coding\": [\n                {\n                  \"code\": \"NH\",\n                  \"display\": \"Howe, Nina\",\n                  \"extension\": [\n                    {\n                      \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/code-table-detail-s-d-a-coding-standard\",\n                      \"valueString\": \"BHR\"\n                    }\n                  ]\n                }\n              ]\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-entered-on\",\n            \"valueDateTime\": \"2007-08-09T18:10:00+00:00\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-entering-organization\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a9b953-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-from-time\",\n            \"valueDateTime\": \"2007-08-09T14:03:00+00:00\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-number-of-refills\",\n            \"valueString\": \"4\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-ordered-by\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a9cbe2-21b9-11ef-9188-0242ac1a0002\"\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-route\",\n            \"valueCodeableConcept\": {\n              \"coding\": [{ \"code\": \"IM\", \"display\": \"Injection\" }]\n            }\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-status\",\n            \"valueString\": \"X\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-strength-volume\",\n            \"valueDecimal\": 1\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-strength-volume-units\",\n            \"valueString\": \"Ml\"\n          },\n          {\n            \"url\": \"http://intersystems.com/fhir/extn/sda3/lib/medication-verified-by\",\n            \"valueReference\": {\n              \"reference\": \"urn:uuid:a8a9e06a-21b9-11ef-9188-0242ac1a0002\"\n            }\n          }\n        ],\n        \"identifier\": [\n          {\n            \"type\": {\n              \"coding\": [\n                {\n                  \"code\": \"FILL\",\n                  \"display\": \"Filler Identifier\",\n                  \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\"\n                }\n              ],\n              \"text\": \"FillerId\"\n            },\n            \"use\": \"official\",\n            \"value\": \"F00044\"\n          },\n          {\n            \"type\": {\n              \"coding\": [\n                {\n                  \"code\": \"PLAC\",\n                  \"display\": \"Placer Identifier\",\n                  \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\"\n                }\n              ],\n              \"text\": \"PlacerId\"\n            },\n            \"use\": \"official\",\n            \"value\": \"P87221\"\n          }\n        ],\n        \"medicationReference\": {\n          \"reference\": \"urn:uuid:a8a84796-21b9-11ef-9188-0242ac1a0002\"\n        },\n        \"note\": [\n          {\n            \"text\": \"Injection: 3ml IM x 100 IU/ml @ 200 ml/hr (max 4 refills)\"\n          }\n        ],\n        \"reasonCode\": [{ \"text\": \"Pain\" }],\n        \"status\": \"unknown\",\n        \"subject\": {\n          \"reference\": \"urn:uuid:a8a118a4-21b9-11ef-9188-0242ac1a0002\"\n        }\n      }\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/Bundle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"Bundle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patient DL 187788223334",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json;"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"resourceType\": \"Patient\",\n  \"identifier\": [\n    {\n      \"use\": \"official\",\n      \"type\": {\n        \"coding\": [\n          {\n            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n            \"code\": \"DL\",\n            \"display\": \"Driver's License\"\n          }\n        ]\n      },\n      \"system\": \"urn:oid:2.16.840.1.113883.4.3.25\",\n      \"value\": \"187788223334\"\n    }\n  ],\n  \"name\": [\n    {\n      \"use\": \"official\",\n      \"family\": \"Potier\",\n      \"given\": [\n        \"Hubert\"\n      ]\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1980-06-18\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/Patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"Patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patient DL 635564323334",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json;"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"resourceType\": \"Patient\",\n  \"identifier\": [\n    {\n      \"use\": \"official\",\n      \"type\": {\n        \"coding\": [\n          {\n            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n            \"code\": \"DL\",\n            \"display\": \"Driver's License\"\n          }\n        ]\n      },\n      \"system\": \"urn:oid:2.16.840.1.113883.4.3.25\",\n      \"value\": \"635564323334\"\n    }\n  ],\n  \"name\": [\n    {\n      \"use\": \"official\",\n      \"family\": \"Lamarck\",\n      \"given\": [\n        \"Alice\"\n      ]\n    }\n  ],\n  \"gender\": \"female\",\n  \"birthDate\": \"2002-04-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/Patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"Patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patient DL 935564323334",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "SYS",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json;"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"resourceType\": \"Patient\",\n  \"identifier\": [\n    {\n      \"use\": \"official\",\n      \"type\": {\n        \"coding\": [\n          {\n            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n            \"code\": \"DL\",\n            \"display\": \"Driver's License\"\n          }\n        ]\n      },\n      \"system\": \"urn:oid:2.16.840.1.113883.4.3.25\",\n      \"value\": \"935564323334\"\n    }\n  ],\n  \"name\": [\n    {\n      \"use\": \"official\",\n      \"family\": \"Dupuis\",\n      \"given\": [\n        \"Louis\"\n      ]\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1984-08-30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:52776/fhir/r4/Patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52776",
+					"path": [
+						"fhir",
+						"r4",
+						"Patient"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
