@@ -36,7 +36,7 @@ docker-compose up --build -d
 
 ## Import FHIR resources from VSCode using FHIR.API.http
 
-1. edit the file FHIR.API.http
+1. edit the file [FHIR.API.http](./FHIR.API.http)
 2. click on "Send Request" under ### labels 
 
 
