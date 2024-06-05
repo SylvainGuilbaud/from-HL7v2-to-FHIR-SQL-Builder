@@ -25,6 +25,8 @@ CREATE TABLE AAAA.Location (
 
 LOAD DATA FROM FILE '/Notebooks/Location.csv' INTO AAAA.Location
 
+SELECT * FROM AAAA.Location
+
 create TABLE if not exists AB.DriverLicense (
 
     Code varchar(255) not null,
@@ -42,7 +44,6 @@ SELECT
 P.PatientNameFamily, P.PatientNameGiven,DL.*
 FROM AA.Patient P
 inner join AB.DriverLicense DL on P.PatientIdentifierValue = DL.Code
-
 
 
 SELECT 
