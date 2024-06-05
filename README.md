@@ -34,6 +34,12 @@ docker-compose up --build -d
 
 3 steps to use it :
 
+## Import FHIR resources using POSTMAN
+
+1. import the file ./misc/from HL7v2 to FHIR SQL Builder.postman_collection.json into Postman
+2. send the 3 POST containing Driver License (DL)
+
+
 ## Import HL7v2 Messages
 
 Click on the left arrow between IRIS and the ambulance.
