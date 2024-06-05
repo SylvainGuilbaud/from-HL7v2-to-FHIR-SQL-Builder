@@ -25,7 +25,7 @@
           "index": false
         },
         {
-          "name": "PatientGender",
+          "name": "Gender",
           "type": "String",
           "path": "Patient.gender",
           "index": false
@@ -49,9 +49,21 @@
           "index": false
         },
         {
-          "name": "PatientIdentifierValue",
+          "name": "IdentifierValue",
           "type": "String",
           "path": "Patient.identifier.value",
+          "index": false
+        },
+        {
+          "name": "IdentifierCode",
+          "type": "String",
+          "path": "Patient.identifier.type.coding.code",
+          "index": false
+        },
+        {
+          "name": "IdentifierType",
+          "type": "String",
+          "path": "Patient.identifier.type.coding.display",
           "index": false
         }
       ]
@@ -111,8 +123,8 @@
     }
   ],
   "version": 1,
-  "scanStartDateTime": "2024-06-05T07:51:17Z",
+  "scanStartDateTime": "2024-06-05T16:16:02Z",
   "scanFHIRRepositoryName": "FHIR",
   "id": 1,
-  "lastModified": "2024-06-05T08:15:35.612Z"
+  "lastModified": "2024-06-05T16:27:23.139Z"
 }
